@@ -1,36 +1,86 @@
-# :title: Text::Hyphen
-# :main: Text::Hyphen
-
 module Text; end
 
-    # = Introduction
-    # Text::Hyphen -- hyphenate words using modified versions of TeX
-    # hyphenation patterns.
-    #
-    # == Usage
-    #   require 'text/hyphen'
-    #   hh = Text::Hyphen.new(:language => 'en_us', :left => 2, :right => 2)
-    #     # Defaults to the above
-    #   hh = TeX::Hyphen.new
-    #
-    #   word = "representation"
-    #   points = hyp.hyphenate(word)  #=> [3, 5, 8, 10]
-    #   puts hyp.visualize(word)      #=> rep-re-sen-ta-tion
-    #
-    # == Description
-    # Creates a new Hyphen object and loads the language patterns into
-    # memory. The hyphenator can then be asked for the hyphenation of
-    # a word. If no language is specified, then the language en_us (EN_US)
-    # is used by default.
-    #
-    # Copyright::   Copyright (c) 2004 - 2005 Austin Ziegler
-    # Version::     1.0.0
-    # Based On::    <tt>TeX::Hyphen</tt> 0.4 (c) 2003 - 2004 Martin DeMello
-    #               and Austin Ziegler, in turn based on Perl's
-    #               <tt>TeX::Hyphen</tt>
-    #               [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm]
-    #               Copyright (c) 1997 - 2002 Jan Pazdziora
-    # Licence::     Ruby's
+  # = Introduction
+  # Text::Hyphen -- hyphenate words using modified versions of TeX
+  # hyphenation patterns.
+  #
+  # == Usage
+  #   require 'text/hyphen'
+  #   hh = Text::Hyphen.new(:language => 'en_us', :left => 2, :right => 2)
+  #     # Defaults to the above
+  #   hh = TeX::Hyphen.new
+  #
+  #   word = "representation"
+  #   points = hyp.hyphenate(word)    #=> [3, 5, 8, 10]
+  #   puts hyp.visualize(word)        #=> rep-re-sen-ta-tion
+  #   
+  #   en = Text::Hyphen.new(:left => 0, :right => 0)
+  #   fr = Text::Hyphen.new(:language = "fr", :left => 0, :right => 0)
+  #   puts en.visualise("organiser")  #=> or-gan-iser
+  #   puts fr.visualise("organiser")  #=> or-ga-ni-ser
+  #
+  # == Description
+  # Creates a new Hyphen object and loads the language patterns into
+  # memory. The hyphenator can then be asked for the hyphenation of
+  # a word. If no language is specified, then the language en_us (EN_US)
+  # is used by default.
+  #
+  # Copyright::   Copyright (c) 2004 Austin Ziegler
+  # Version::     1.0.0
+  # Based On::    <tt>TeX::Hyphen</tt> 0.4 Copyright (c) 2003 - 2004
+  #               Martin DeMello and Austin Ziegler, in turn based on
+  #               Perl's <tt>TeX::Hyphen</tt>
+  #               [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm]
+  #               Copyright (c) 1997 - 2002 Jan Pazdziora
+  #
+  # == Licence
+  # Licensing for Text::Hyphen is unfortunately complex because of the
+  # various copyrights and licences of the source hyphenation files. Some of
+  # these files are available only under the TeX licence and others are
+  # available only under the GNU GPL while others are public domain. Each
+  # language file has these licences embedded within the file. Please
+  # consult each file's licence to ensure that it is compatible with your
+  # application.
+  #
+  # The copyright on the Text::Hyphen application/library and the Ruby
+  # translations of hyphenation files belongs to Austin Ziegler. All other
+  # copyrights on original versions still stand; Text::Hyphen is a derivative
+  # work of these and other projects.
+  #
+  # === Application and Compilation Licences
+  # Text::Hyphen, the application/library is licensed under the same terms
+  # as Ruby. Note that this specifically refers to the contents of
+  # bin/hyphen, lib/text/hyphen.rb, and lib/text/hyphen/language.rb.
+  #
+  # Individual language hyphenation files are NOT licensed under these
+  # terms, but under the following MIT-style licence and the original
+  # hyphenation pattern licenses. The copyright for the original TeX
+  # hyphenation files is held by the original authors; any mistakes in
+  # conversion of these files to Ruby is attributable to the contributors to
+  # the Text::Hyphen package only.
+  #
+  # The compilation package Text::Hyphen is licensed under the same terms as
+  # Ruby.
+  #
+  # === Blanket Language Hyphenation File Licence
+  # Permission is hereby granted, free of charge, to any person obtaining
+  # a copy of this software and associated documentation files (the
+  # "Software"), to deal in the Software without restriction, including
+  # without limitation the rights to use, copy, modify, merge, publish,
+  # distribute, sublicense, and/or sell copies of the Software, and to
+  # permit persons to whom the Software is furnished to do so, subject to
+  # the following conditions:
+  #
+  # The above copyright notice and this permission notice shall be included
+  # in all copies or substantial portions of the Software.
+  #
+  # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  # OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  # IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class Text::Hyphen
   DEBUG   = false
   VERSION = '1.0.0'
@@ -59,7 +109,8 @@ class Text::Hyphen
     # names will be downcased and class names will be upcased (e.g., 'Pt'
     # for the Portuguese language becomes 'pt' and 'PT', respectively).
     #
-    # The language may be 
+    # The language may also be specified as an instance of
+    # Text::Hyphen::Language.
   attr_accessor :language
   def language=(lang) #:nodoc:
     require 'text/hyphen/language' unless defined?(Text::Hyphen::Language)
@@ -119,7 +170,7 @@ class Text::Hyphen
     result = [0] * (word.split(//).size + 1)
     rightstop = word.split(//).size - @right
 
-    updater = Proc.new do |result, hash, str, pos|
+    updater = Proc.new do |hash, str, pos|
       if hash.has_key?(str)
         $stderr.print "#{pos}: #{str}: #{hash[str]}" if DEBUG
         hash[str].split(//).each_with_index do |cc, ii|
@@ -135,13 +186,13 @@ class Text::Hyphen
       restlength = word.length - pos
       (1..restlength).each do |length|
         substr = word[pos, length]
-        updater[result, @language.hyphen, substr, pos]
-        updater[result, @language.start, substr, pos] if pos.zero?
-        updater[result, @language.stop, substr, pos] if (length == restlength)
+        updater[@language.hyphen, substr, pos]
+        updater[@language.start, substr, pos] if pos.zero?
+        updater[@language.stop, substr, pos] if (length == restlength)
       end
     end
 
-    updater[result, @language.both, word, 0] if @language.both[word]
+    updater[@language.both, word, 0] if @language.both[word]
 
     (0..@left).each { |i| result[i] = 0 }
     ((-1 - @right)..(-1)).each { |i| result[i] = 0 }
@@ -152,9 +203,9 @@ class Text::Hyphen
     #
     #   hyp.visualize('representation')
     #
-    # should return <tt>rep-re-sen-ta-tion</tt>, at least for English
-    # patterns. If the word has been visualised previously, it will be
-    # returned from a per-instance cache.
+    # returns <tt>rep-re-sen-ta-tion</tt>, at least for English patterns. If
+    # the word has been visualised previously, it will be returned from
+    # a per-instance cache.
   def visualise(word)
     return @vcache[word] if @vcache.has_key?(word)
     w = word.dup
@@ -182,21 +233,26 @@ class Text::Hyphen
     end
   end
 
+    # Returns statistics
   def stats
-    _b = @ruleset_mod.rules[:both].size
-    _s = @ruleset_mod.rules[:begin].size
-    _e = @ruleset_mod.rules[:end].size
-    _h = @ruleset_mod.rules[:hyphen].size
-    _x = @ruleset_mod.rules[:exception].size
+    _b = @language.both.size
+    _s = @language.start.size
+    _e = @language.stop.size
+    _h = @language.hyphen.size
+    _x = @language.exceptions.size
+    _T = _b + _s + _e + _h + _x
 
     s = <<-EOS
-Statistics for #{@@language.inspect}:
-  all         : #{_b + _s + _e + _h + _x}
-  exceptions  : #{_x}
-  begin       : #{_s}
-  end         : #{_e}
-  both        : #{_b}
-    EOS
+
+The language '%s' contains %d total hyphenation patterns.
+    % 6d patterns are word start patterns.
+    % 6d patterns are word stop patterns.
+    % 6d patterns are word start/stop patterns.
+    % 6d patterns are normal patterns.
+    % 6d patterns are exceptions.
+
+EOS
+    s % [ @iso_language, _T, _s, _e, _b, _h, _x ]
   end
 
 private

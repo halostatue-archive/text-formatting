@@ -3,13 +3,15 @@
 #   and Graham Toal in 1992.
 #
 # The original copyright holds and is reproduced in the source to this file.
-# The Ruby version of these patterns are copyright 2004 - 2005 Austin
-# Ziegler and are available under an MIT license. See LICENCE for more
-# information.
+# The Ruby version of these patterns are copyright 2004 Austin Ziegler and
+# are available under an MIT license. See LICENCE for more information.
 #--
 # File: ukhyphen.tex
 # TeX hyphenation patterns for UK English [NOT TO BE CHANGED IN ANY WAY!]
 #       $Log$
+#       Revision 1.2  2004/12/20 22:43:04  austin
+#       Update of Text::Hyphen for 1.0 release.
+#
 #       Revision 1.1  2004/12/20 07:27:24  austin
 #       Initial checkin of Text::Hyphen 1.0.
 #

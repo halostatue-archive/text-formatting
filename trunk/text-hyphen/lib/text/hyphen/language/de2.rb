@@ -4,10 +4,8 @@
 #   (1993, 1994, 1999).
 #
 # The original copyright holds and is reproduced in the source to this file.
-# The Ruby version of these patterns are copyright 2004 - 2005 Austin
-# Ziegler and are available under an MIT license. See LICENCE for more
-# information.
-#
+# The Ruby version of these patterns are copyright 2004 Austin Ziegler and
+# are available under an MIT license. See LICENCE for more information.
 #--
 # This is `dehypht.tex' as of 03 March 1999.
 #

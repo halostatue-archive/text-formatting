@@ -1,4 +1,9 @@
-# Language scaffolding support for Text::Hyphen.
+# Language scaffolding support for Text::Hyphen. Language hyphenation
+# patterns are defined as instances of this class -- and only this class.
+# This is a deliberate "breaking" of Ruby's concept of duck-typing and is
+# intended to provide an indication that the patterns have been converted
+# from TeX encodings to other encodings (e.g., latin1 or UTF-8) that are
+# more suitable to general text manipulations.
 class Text::Hyphen::Language
   WORD_START_RE         = %r{^\.}
   WORD_END_RE           = %r{\.$}

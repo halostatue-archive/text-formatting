@@ -5,10 +5,8 @@
 # The encodings mentioned below are NOT used.
 #
 # The original copyright holds and is reproduced in the source to this file.
-# The Ruby version of these patterns are copyright 2004 - 2005 Austin
-# Ziegler and are available under an MIT license. See LICENCE for more
-# information.
-#
+# The Ruby version of these patterns are copyright 2004 Austin Ziegler and
+# are available under an MIT license. See LICENCE for more information.
 #--
 # dkhyphen.tex / dkcommon.tex / dkspecial.tex
 # Copyright 1994 Frank Jensen (Frank.Jensen@hugin.com)

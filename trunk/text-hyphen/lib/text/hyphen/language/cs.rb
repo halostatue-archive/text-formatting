@@ -2,9 +2,8 @@
 #   Lala 8.11.1991
 #
 # The original copyright holds and is reproduced in the source to this file.
-# The Ruby version of these patterns are copyright 2004 - 2005 Austin Ziegler
-# and are available under an MIT license. See LICENCE for more information.
-#
+# The Ruby version of these patterns are copyright 2004 Austin Ziegler and
+# are available under an MIT license. See LICENCE for more information.
 #--
 # Czech hyphenation patterns - Lala 8.11.1991
 #++

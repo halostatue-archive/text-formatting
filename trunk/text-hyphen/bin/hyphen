@@ -33,16 +33,19 @@ ARGV.options do |opt|
     options.action = :hyphenate_to
     options.size = size.to_i
   }
+  opt.on("-S", "--stats", 'Shows the hyphenation statistics for the', 'current language pattern dictionary.') { |mode|
+    options.action = :stats
+  }
 
   opt.separator ""
   opt.separator "Options"
-  opt.on('-L', '--left SIZE', 'Sets the minimum number of letters on', 'the left side of the word.') { |left|
+  opt.on('-L', '--left SIZE', Integer, 'Sets the minimum number of letters on', 'the left side of the word.') { |left|
     options.left = left.to_i
   }
-  opt.on('-R', '--right SIZE', 'Sets the minimum number of letters on', 'the right side of the word.') { |right|
+  opt.on('-R', '--right SIZE', Integer, 'Sets the minimum number of letters on', 'the right side of the word.') { |right|
     options.right = right.to_i
   }
-  opt.on('--language LANGUAGE', 'Loads the specified language resource.') { |lang|
+  opt.on('-l', '--language LANGUAGE', 'Loads the specified language resource.') { |lang|
     options.language = lang
   }
 
@@ -52,13 +55,13 @@ ARGV.options do |opt|
     exit 0
   }
   opt.on_tail('-v', '--version', 'Display the program and library version.') {
-    $stderr.puts "#{File.basename($0)} and Text::Hyphen version #{Text::Hyphen::VERSION}"
+    $stderr.puts "#{File.basename($0)}: Text::Hyphen version #{Text::Hyphen::VERSION}"
     exit 0
   }
   opt.parse!
 end
 
-if ARGV.empty?
+if ARGV.empty? and options.action != :stats
   $stderr.puts ARGV.options
   exit 0
 end
@@ -99,4 +102,6 @@ when :hyphenate_to
     size -= (vis.size + 1)
     print "#{vis} "
   end
+when :stats
+  puts hyphenator.stats
 end
