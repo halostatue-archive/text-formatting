@@ -31,6 +31,8 @@ module TeX #:nodoc:
       # to generate the patterns. Since various pattern files could be
       # generated with different values set, this is just a default that can
       # be changed with parameters to the TeX::Hyphen constructor.
+      #
+      # Note: the encoding for this is ISO-8859-1 or ISO-8859-15.
     module Czech
     private
       BACKV  = { 'c' => 'è', 'd' => 'ï', 'e' => 'ì', 'l' => 'µ', 'n' => 'ò',

@@ -24,15 +24,15 @@ module TeX #:nodoc:
     # Donald E. Knuth's <tt>hyphen.tex</tt>, that is included in this module,
     # is used instead.
     #
-    # Copyright::   Copyright (c) 2003 Martin DeMello and Austin Ziegler
-    # Version::     0.3.0.0
+    # Copyright::   Copyright (c) 2003 - 2004 Martin DeMello and Austin Ziegler
+    # Version::     1.0.0
     # Based On::    Perl's <tt>TeX::Hyphen</tt>
     #               [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm]
     #               Copyright (c) 1997 - 2002 Jan Pazdziora
     # Licence::     Ruby's
     #
   class Hyphen
-    VERSION = '0.3.1'
+    VERSION = '1.0.0'
 
     DEFAULT_MIN_LEFT  = 2
     DEFAULT_MIN_RIGHT = 2
@@ -94,10 +94,10 @@ module TeX #:nodoc:
     def initialize(arg = nil, &block)
       case arg
       when Array
-        @file = arg[0]
-        @style = arg[1]
-        @min_left = arg[2]
-        @min_right = arg[3]
+        @file       = arg[0]
+        @style      = arg[1]
+        @min_left   = arg[2]
+        @min_right  = arg[3]
       when Hash
         @file = arg[:file] || arg['file']
         @style = arg[:style] || arg['style']
@@ -115,19 +115,24 @@ module TeX #:nodoc:
 
       if @file.nil?
         data = TeX::HyphenTeX.dup
+        @import = false
       else
         data = @file
         @import = true
       end
 
-      @hyphen, @begin_hyphen, @end_hyphen, @both_hyphen, @exception =
-        (0...5).map{{}}
+      @hyphen = {}
+      @begin_hyphen = {}
+      @end_hyphen = {}
+      @both_hyphen = {}
+      @exception = {}
 
       @style ||= 'czech'
 
       unless @style.nil?
         require "tex/hyphen/#{@style}"
-        mod = eval("TeX::Hyphen::#{@style.capitalize}")
+
+        mod = TeX::Hyphen.const_get(@style.capitalize)
         self.extend(mod)
 
         min_left ||= mod::DEFAULT_STYLE_MIN_LEFT
@@ -137,7 +142,7 @@ module TeX #:nodoc:
       @min_left ||= DEFAULT_MIN_LEFT
       @min_right ||= DEFAULT_MIN_RIGHT
 
-      data = File.open(@file, 'r') if data == @file
+      data = File.open(@file, 'r') if @import
       parsepatterns(data) { |line| line =~ /\\patterns\{/ }
       parsepatterns(data) { |line| not process_patterns(line.chomp) }
       parsepatterns(data) { |line| line =~ /\\hyphenation\{/ }

@@ -3,4 +3,4 @@ Installing this package is as simple as:
 % ruby install.rb
 
 Alternatively, you can use the RubyGem version of TeX::Hyphen available as
-tex-hyphen-0.3.1.gem from the usual sources.
+tex-hyphen-1.0.0.gem from the usual sources.

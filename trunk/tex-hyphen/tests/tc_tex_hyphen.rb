@@ -5,6 +5,7 @@
 $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib") if __FILE__ == $0
 
 require 'test/unit'
+require 'tex/hyphen'
 
 class TestTeX__Hyphen < Test::Unit::TestCase
   WORDS   = %w(additional declination going leaving maximizes multiple peter
@@ -23,14 +24,14 @@ class TestTeX__Hyphen < Test::Unit::TestCase
     [3, 5, 8, 10]  # representation
   ]
 
-  VISUAL  = ['ad-di-tion-al', 'declination', 'go-ing', 'leav-ing',
-  'max-i-mizes', 'mul-ti-ple', 'pe-ter', 'play-back', 'presents',
-  'pro-grammable', 'rep-re-sen-ta-tion']
+  VISUAL = %w(ad-di-tion-al declination go-ing leav-ing max-i-mizes
+              mul-ti-ple pe-ter play-back presents pro-grammable
+              rep-re-sen-ta-tion)
 
-  HY_TO   = [["addi-", "tional"], [nil, "declination"], ["go-", "ing"],
-  ["leav-", "ing"], ["maxi-", "mizes"], ["mul-", "tiple"],
-  ["pe-", "ter"], ["play-", "back"], [nil, "presents"],
-  ["pro-", "grammable"], ["rep-", "resentation"]]
+  HY_TO   = [ %w(addi- tional), [nil, 'declination'], %w(go- ing),
+              %w(leav- ing), %w(maxi- mizes), %w(mul- tiple), %w(pe- ter),
+              %w(play- back), [nil, 'presents'], %w(pro- grammable),
+              %w(rep- resentation)]
 
   def test_hyphenate
     @r = []

@@ -1,5 +1,5 @@
-TeX::Hyphen 0.3
-Copyright © 2003 Martin DeMello, Austin Ziegler
+TeX::Hyphen 1.0.0
+Copyright (c) 2003 - 2004 Martin DeMello, Austin Ziegler
 
 Hyphenates a word according to a TeX pattern file (defaults to Donald E.
 Knuth's hyphen.tex, included in this distribution). This is a straightforward
@@ -7,3 +7,5 @@ port of the perl implementation by Jan Pazdziora
 [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm].
 Because hyphenation can potentially be an expensive proposition, TeX::Hyphen
 will now return from a cache.
+
+TeX::Hyphen is licensed under the same terms as Ruby.
