@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.autorequire = %q{text/hyphen}
   s.require_paths = %w{lib}
   s.bindir = %q(bin)
-  s.exectuables = %w(hyphen)
+  s.executables = %w(hyphen)
 
   s.files = Dir.glob("**/*").delete_if do |item|
     item.include?("CVS") or item.include?(".svn") or
