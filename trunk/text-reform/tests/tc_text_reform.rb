@@ -316,7 +316,7 @@ EOS
     assert_equal 0, data.length
 
     data = 'split'
-    r.minbreak = 1
+    r.min_break = 1
     s = r.format('~', data)
 
     assert_equal "s-\np-\nl-\ni-\nt\n", s
@@ -399,25 +399,35 @@ DOLOR
         ('-'*50 + "\n" + small.format('>'*50, "...#{page+1}"))
       end
     end
-    r.pagefeed = "\n\n"
-    r.pagelen = 10
-    r.pagenum = 7
+    r.page_feed = "\n\n"
+    r.page_len = 10
+    r.page_num = 7
 
     s = r.format(template, data.dup)
     assert_equal(TEST_PAGINATION_1, s)
 
-    r.pagenum = 1
+    r.page_num = 1
     r.header = { :right => 'Running head' }
     r.footer = { :centre => lambda { |page| "page #{page}" } }
-    r.pagelen = 10
+    r.page_len = 10
 
     assert_equal(TEST_PAGINATION_2, r.format(template, data.dup))
 
-    r.pagenum = 1
+    r.page_num = 1
     r.header = { :right => 'Running head' }
     r.footer = lambda do |page| { :center => "page #{page}" } end
 
     assert_equal(TEST_PAGINATION_2, r.format(template, data.dup))
+  end
+
+  def test_page_width
+
+    r.page_width = 30
+    r.header = { :right => 'test' }
+    text = 'text'
+
+    assert_equal "                          test\ntext                       \n", 
+      r.format( '[[[[[[[[[[[[[[[[[[[[[[[[[[[', text )
   end
 
   def test_cols

@@ -1,5 +1,6 @@
 Text::Reform README
 ===================
+
 Text::Reform class is a rewrite from the Perl module with the same name by
 Damian Conway (damian@conway.org). Much of this documentation has been copied
 from the original documentation and adapted to the Ruby version.

@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.test_suite_file = %w{tests/testall.rb}
+  s.test_suite_file = 'tests/testall.rb'
 
   s.autorequire = %q{text/format}
   s.require_paths = %w{lib}
@@ -31,5 +31,5 @@ Gem::Specification.new do |s|
   end
   s.description = description[2..-1].join(" ")
 
-  s.add_dependency('tex-hyphen', '>= 0.3.1')
+  s.add_dependency('text-hyphen', '~>1.0.0')
 end

@@ -329,7 +329,7 @@ end
   #
   # Words will not be broken if the break would leave less than 2 characters
   # on the current line. This minimum can be varied by setting the
-  # +minbreak+ option to a numeric value indicating the minumum total broken
+  # +min_break+ option to a numeric value indicating the minumum total broken
   # characters (including hyphens) required on the current line. Note that,
   # for very narrow fields, words will still be broken (but
   # __unhyphenated__). For example:
@@ -346,7 +346,7 @@ end
   #
   # whilst:
   #
-  #   r.minbreak= 1
+  #   r.min_break= 1
   #   puts r.format('~', 'split')
   #
   # would print:
@@ -629,15 +629,15 @@ end
   #
   # The #format method can also insert headers, footers, and page-feeds
   # as it formats. These features are controlled by the "header", "footer",
-  # "pagefeed", "pagelen", and "pagenum" options.
+  # "page_feed", "page_len", and "page_num" options.
   #
-  # If the +pagenum+ option is set to an Integer value, page numbering
+  # If the +page_num+ option is set to an Integer value, page numbering
   # will start at that value.
   #
-  # The +pagelen+ option specifies the total number of lines in a page (including
+  # The +page_len+ option specifies the total number of lines in a page (including
   # headers, footers, and page-feeds).
   #
-  # The +pagewidth+ option specifies the total number of columns in a page.
+  # The +page_width+ option specifies the total number of columns in a page.
   #
   # If the +header+ option is specified with a string value, that string is
   # used as the header of every page generated. If it is specified as a block,
@@ -655,7 +655,7 @@ end
   # In this case the hash entries for keys +left+, +centre+ (or +center+), and
   # +right+ specify what is to appear on the left, centre, and right of the
   # header/footer. The entry for the key +width+ specifies how wide the
-  # footer is to be. If the +width+ key is omitted, the +pagewidth+ configuration
+  # footer is to be. If the +width+ key is omitted, the +page_width+ configuration
   # option (which defaults to 72 characters) is used.
   #
   # The  +:left+, +:centre+, and +:right+ values may be literal
@@ -667,8 +667,8 @@ end
   # page, then the resulting hash is treated like the hashes described in the
   # preceding paragraph. See the third example, below.
   #
-  # The +pagefeed+ option acts in exactly the same way, to produce a
-  # pagefeed which is appended after the footer. But note that the pagefeed
+  # The +page_feed+ option acts in exactly the same way, to produce a
+  # page_feed which is appended after the footer. But note that the page_feed
   # is not counted as part of the page length.
   #
   # All three of these page components are recomputed at the *start of each
@@ -692,9 +692,9 @@ end
   #       ('-'*50 + "\n" + small.format('>'*50, "...#{page+1}"))
   #     end
   #   end
-  #   r.pagefeed = "\n\n"
-  #   r.pagelen = 60
-  #   r.pagenum = 7
+  #   r.page_feed = "\n\n"
+  #   r.page_len = 60
+  #   r.page_num = 7
   #
   #   r.format(template, data)
   #
@@ -708,7 +708,7 @@ end
   #
   #   r.header = { :right => 'Running head' }
   #   r.footer = { :centre => lambda do |page| "page #{page}" end }
-  #   r.pagelen = 60
+  #   r.page_len = 60
   #
   #   r.format(template, data)
   #
@@ -764,7 +764,7 @@ class Text::Reform
 
   FIELDMARK     = [LNUMERICAL, BNUMERICAL, BSINGLE, LJUSTIFIED, BJUSTIFIED, LFIELDMARK, BFIELDMARK].flatten.join('|')
 
-    # For use with #header, #footer, and #pagefeed; this will clear the
+    # For use with #header, #footer, and #page_feed; this will clear the
     # header, footer, or page feed block result to be an empty block.
   CLEAR_BLOCK = lambda { "" }
 
@@ -784,23 +784,23 @@ class Text::Reform
     # the start of each page, but does not count towards page length.
     #
     # *Default*::    +CLEAR_BLOCK+
-  attr_accessor :pagefeed
+  attr_accessor :page_feed
 
     # Specifies the total number of lines in a page (including headers,
     # footers, and page-feeds).
     #
     # *Default*::    +nil+
-  attr_accessor :pagelen
+  attr_accessor :page_len
 
     # Where to start page numbering.
     #
     # *Default*::    +nil+
-  attr_accessor :pagenum
+  attr_accessor :page_num
 
     # Specifies the total number of columns in a page.
     #
     # *Default*::    72
-  attr_accessor :pagewidth
+  attr_accessor :page_width
 
     # Break class instance that is used to break words in hyphenation. This
     # class must have a #break method accepting the three arguments +str+,
@@ -817,7 +817,7 @@ class Text::Reform
     # line. This prevents breaking of words below its value.
     #
     # *Default*::    2
-  attr_accessor :minbreak
+  attr_accessor :min_break
 
     # If +true+, causes any sequence of spaces and/or tabs (but not
     # newlines) in an interpolated string to be replaced with a single
@@ -916,21 +916,22 @@ class Text::Reform
     # *Default*::    +true+
   attr_accessor :trim
 
-    # Create a Text::Reform object. Accetps an optional hash of
+    # Create a Text::Reform object. Accepts an optional hash of
     # construction option (this will change to named parameters in Ruby
     # 2.0). After the initial object is constructed (with either the
     # provided or default values), the object will be yielded (as +self+) to
     # an optional block for further construction and operation.
+
   def initialize(options = {}) #:yields self:
     @debug      = options[:debug]       || false
     @header     = options[:header]      || CLEAR_BLOCK
     @footer     = options[:footer]      || CLEAR_BLOCK
-    @pagefeed   = options[:pagefeed]    || CLEAR_BLOCK
-    @pagelen    = options[:pagelen]     || nil
-    @pagenum    = options[:pagenum]     || nil
-    @pagewidth  = options[:pagewidth]   || 72
+    @page_feed  = options[:page_feed]   || CLEAR_BLOCK
+    @page_len   = options[:page_len]    || nil
+    @page_num   = options[:page_num]    || nil
+    @page_width = options[:page_width]  || 72
     @break      = options[:break]       || Text::Reform.break_with('-')
-    @minbreak   = options[:minbreak]    || 2
+    @min_break  = options[:min_break]   || 2
     @squeeze    = options[:squeeze]     || false
     @fill       = options[:fill]        || false
     @filler     = options[:filler]      || { :left => ' ', :right => ' ' }
@@ -943,11 +944,11 @@ class Text::Reform
 
     # Format data according to +format+.
   def format(*args)
-    @pagenum ||= 1
+    @page_num ||= 1
 
-    __debug("Acquiring header and footer: ", @pagenum)
-    header = __header(@pagenum)
-    footer = __footer(@pagenum, false)
+    __debug("Acquiring header and footer: ", @page_num)
+    header = __header(@page_num)
+    footer = __footer(@page_num, false)
 
     previous_footer = footer
 
@@ -1048,21 +1049,21 @@ class Text::Reform
               # New line ?
             if part == "\n"
               line_count += 1
-              if @pagelen && line_count >= @pagelen
-                __debug("\tejecting page: #@pagenum")
+              if @page_len && line_count >= @page_len
+                __debug("\tejecting page: #@page_num")
 
-                @pagenum += 1
-                pagefeed = __pagefeed
-                header = __header(@pagenum)
+                @page_num += 1
+                page_feed = __pagefeed
+                header = __header(@page_num)
 
-                text << footer + pagefeed + header
+                text << footer + page_feed + header
                 previous_footer = footer
 
-                footer = __footer(@pagenum, false)
+                footer = __footer(@page_num, false)
 
                 line_count = hf_count = (header.count("\n") + footer.count("\n"))
 
-                header = pagefeed + header
+                header = page_feed + header
               end
             end
           end  # multiway if on part
@@ -1078,15 +1079,15 @@ class Text::Reform
     if hf_count > 0 and line_count == hf_count
         # there is a header that we don't need
       text.sub!(/#{Regexp.escape(header)}\Z/, '')
-    elsif line_count > 0 and @pagelen and @pagelen > 0
+    elsif line_count > 0 and @page_len and @page_len > 0
         # missing footer:
-      text << "\n" * (@pagelen - line_count) + footer
+      text << "\n" * (@page_len - line_count) + footer
       previous_footer = footer
     end
 
       # Replace last footer
     if previous_footer and not previous_footer.empty?
-      lastFooter = __footer(@pagenum, true)
+      lastFooter = __footer(@page_num, true)
       footerDiff = lastFooter.count("\n") - previous_footer.count("\n")
 
         # Enough space to squeeze the longer final footer in ?
@@ -1097,12 +1098,12 @@ class Text::Reform
 
         # If not, create an empty page for it.
       if footerDiff > 0
-        @pagenum += 1
-        lastHeader = __header(@pagenum)
-        lastFooter = __footer(@pagenum, true)
+        @page_num += 1
+        lastHeader = __header(@page_num)
+        lastFooter = __footer(@page_num, true)
 
         text << lastHeader
-        text << "\n" * (@pagelen - lastHeader.count("\n") - lastFooter.count("\n"))
+        text << "\n" * (@page_len - lastHeader.count("\n") - lastFooter.count("\n"))
         text << lastFooter
       else
         lastFooter = "\n" * (-footerDiff) + lastFooter
@@ -1209,7 +1210,7 @@ class Text::Reform
           value.replace(extra)
         else
           __debug("Need to break: ", match)
-          if (remaining - lead.length) >= @minbreak
+          if (remaining - lead.length) >= @min_break
             __debug("Trying to break: ", match)
             broken, left = @break.break(match, remaining, length)
             text << broken
@@ -1310,15 +1311,15 @@ class Text::Reform
 
     # Return the header to use. Header can be in many formats, refer
     # yourself to the documentation.
-  def __header(pagenum)
-    __header_or_footer(@header, pagenum, false)
+  def __header(page_num)
+    __header_or_footer(@header, page_num, false)
   end
   private :__header
 
-    # Return the footer to use for +pagenum+ page. +last+ is true if this
+    # Return the footer to use for +page_num+ page. +last+ is true if this
     # is the last page.
-  def __footer(pagenum, last)
-    __header_or_footer(@footer, pagenum, last)
+  def __footer(page_num, last)
+    __header_or_footer(@footer, page_num, last)
   end
   private :__footer
 
@@ -1338,7 +1339,7 @@ class Text::Reform
         __header_or_footer(element.call(page, last), page, last)
       end
     elsif element.kind_of?(Hash)
-      page_width = element[:width] || @pagewidth
+      page_width = element[:width] || @page_width
       @internal_formatter = self.class.new unless @internal_formatter
 
       if element[:left]
@@ -1371,13 +1372,13 @@ class Text::Reform
   end
   private :__header_or_footer
 
-    # Use the pagefeed attribute to get the page feed text. +pagefeed+ can
+    # Use the page_feed attribute to get the page feed text. +page_feed+ can
     # contain a block to call or a String.
   def __pagefeed
-    if @pagefeed.respond_to?(:call)
-      @pagefeed.call(@page)
+    if @page_feed.respond_to?(:call)
+      @page_feed.call(@page)
     else
-      @pagefeed
+      @page_feed
     end
   end
   private :__pagefeed
