@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
   s.rdoc_options      = %w(--title TeX::Hyphen --main README --line-numbers)
-  s.extra_rdoc_files  = %w(README LICENCE INSTALL ChangeLog)
+  s.extra_rdoc_files  = %w(README INSTALL ChangeLog)
 
   s.test_files = %w{tests/tc_tex_hyphen.rb}
 
