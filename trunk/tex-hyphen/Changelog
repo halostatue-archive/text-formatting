@@ -1,6 +1,6 @@
-== TeX::Hyphen 1.0
-* Fixed minor warnings.
-* Bumped version number. This is a stable interface.
+== TeX::Hyphen 0.3.2
+* Final released version of TeX::Hyphen 0.x; the next revision will be 1.0.0
+  with a different API and will be called "TeX::Hyphenate".
 
 == TeX::Hyphen 0.3.1
 * Created a gemspec. Removed some unnecessary scaffolding code.

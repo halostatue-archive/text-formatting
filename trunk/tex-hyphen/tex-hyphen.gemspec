@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
-  s.name = 'tex-hyphen'
-  s.version = '1.0.0'
+  s.name = %q{tex-hyphen}
+  s.version = %q{0.3.2}
   s.summary = %q{Hyphenates a word according to a TeX pattern file.}
   s.platform = Gem::Platform::RUBY
 
   s.has_rdoc = true
 
-  s.test_suite_file = %w{tests/tests.rb}
+  s.test_files = %w{tests/tc_tex_hyphen.rb}
 
   s.autorequire = %q{tex/hyphen}
   s.require_paths = %w{lib}
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.email = %q{text-format@halostatue.ca}
   s.rubyforge_project = %q(text-format)
   s.homepage = %q{http://rubyforge.org/projects/text-format/}
+
   description = []
   File.open("README") do |file|
     file.each do |line|

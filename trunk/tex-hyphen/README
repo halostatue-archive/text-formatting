@@ -1,5 +1,5 @@
-TeX::Hyphen 1.0.0
-Copyright (c) 2003 - 2004 Martin DeMello, Austin Ziegler
+TeX::Hyphen 0.3.2
+Copyright © 2003 - 2004 Martin DeMello and Austin Ziegler
 
 Hyphenates a word according to a TeX pattern file (defaults to Donald E.
 Knuth's hyphen.tex, included in this distribution). This is a straightforward
