@@ -51,6 +51,10 @@ ARGV.options do |opt|
     $stderr.puts opt
     exit 0
   }
+  opt.on_tail('-v', '--version', 'Display the program and library version.') {
+    $stderr.puts "#{File.basename($0)} and TeX::Hyphen version #{TeX::Hyphen::VERSION}"
+    exit 0
+  }
   opt.parse!
 end
 

@@ -1,7 +1,5 @@
 # :title: TeX::Hyphen
 # :main: TeX::Hyphen
-$DEBUG ||= false;
-
 module TeX #:nodoc:
     # = Introduction
     # TeX::Hyphen -- hyphenate words using TeX's patterns
@@ -25,14 +23,16 @@ module TeX #:nodoc:
     # is used instead.
     #
     # Copyright::   Copyright (c) 2003 - 2004 Martin DeMello and Austin Ziegler
-    # Version::     0.4.0
+    # Version::     0.5.0
     # Based On::    Perl's <tt>TeX::Hyphen</tt>
     #               [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm]
     #               Copyright (c) 1997 - 2002 Jan Pazdziora
     # Licence::     Ruby's
     #
   class Hyphen
-    VERSION = '0.4.0'
+    DEBUG   = false;
+
+    VERSION = '0.5.0'
 
     DEFAULT_MIN_LEFT  = 2
     DEFAULT_MIN_RIGHT = 2
@@ -152,7 +152,8 @@ module TeX #:nodoc:
       # returns [3, 5, 8, 10]. If the word has been hyphenated previously, it
       # will be returned from a per-instance cache.
 		def hyphenate(word)
-			STDERR.puts "Hyphenating #{word}" if $DEBUG
+      word = word.downcase
+			STDERR.puts "Hyphenating #{word}" if DEBUG
       return @cache[word] if @cache.has_key?(word)
       res = @exception[word]
       return @cache[word] = make_result_list(res) if res
@@ -229,12 +230,12 @@ module TeX #:nodoc:
 
 		def updateresult(hash, str, pos) #:nodoc:
 			if hash.has_key?(str)
-				STDERR.print "#{pos}: #{str}: #{hash[str]}" if $DEBUG
+				STDERR.print "#{pos}: #{str}: #{hash[str]}" if DEBUG
 				hash[str].split('').each_with_index do |c, i| 
 					c = c.to_i
 					@result[i + pos] = c if c > @result[i + pos]
         end
-				STDERR.puts ": #{@result}" if $DEBUG
+				STDERR.puts ": #{@result}" if DEBUG
 			end
 		end
 

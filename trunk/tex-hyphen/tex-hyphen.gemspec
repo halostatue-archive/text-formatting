@@ -1,15 +1,18 @@
 Gem::Specification.new do |s|
   s.name = %q{tex-hyphen}
-  s.version = %q{0.4.0}
+  s.version = %q{0.5.0}
   s.summary = %q{Hyphenates a word according to a TeX pattern file.}
   s.platform = Gem::Platform::RUBY
 
   s.has_rdoc = true
+  s.rdoc_options      = %w(--title TeX::Hyphen --main README --line-numbers)
+  s.extra_rdoc_files  = %w(README LICENCE INSTALL ChangeLog)
 
   s.test_files = %w{tests/tc_tex_hyphen.rb}
 
   s.autorequire = %q{tex/hyphen}
   s.require_paths = %w{lib}
+  s.bindir = %(bin)
 
   s.files = Dir.glob("**/*").delete_if do |item|
     item.include?("CVS") or item.include?(".svn") or

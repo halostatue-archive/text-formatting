@@ -1,3 +1,10 @@
+== TeX::Hyphen 0.5.0
+* No, really, *this* is the final release.
+* TeX::Hyphen will now properly handle non-lowercase hyphenation.
+* The debugging output has been enabled on TeX::Hyphen::DEBUG, not the global
+  $DEBUG variable.
+* Renamed bin/hyphen to bin/texhyphen.
+
 == TeX::Hyphen 0.4.0
 * This is the final release of TeX::Hyphen for Ruby. The next version will be
   called Text::Hyphen and will provide significant enhancement to the
