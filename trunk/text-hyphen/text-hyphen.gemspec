@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = 'tex-hyphen'
+  s.name = 'text-hyphen'
   s.version = '1.0.0'
   s.summary = %q(Multilingual word hyphenation according to modified TeX hyphenation pattern files.)
   s.platform = Gem::Platform::RUBY
