@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc          = true
   s.rdoc_options      = %w(--title Text::Format --main README --line-numbers)
-  s.extra_rodc_files  = %w(README Changelog Install)
+  s.extra_rdoc_files  = %w(README Changelog Install)
 
   s.test_files        = %w(tests/tc_text_format.rb)
 
