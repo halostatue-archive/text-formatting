@@ -1,0 +1,10 @@
+== TeX::Hyphen 0.3
+* Added caching capabilities to both #hyphenate and #visualise.
+
+== TeX::Hyphen 0.2
+* Added TeX::Hyphen#hyphenate_to(word, size). This is in preparation for a
+  change to Text::Format for hyphenation of words. Created Test::Unit unit
+  tests.
+
+== TeX::Hyphen 0.1
+* Initial Ruby version by Martin DeMello.

@@ -1,0 +1,5 @@
+Requires InstallPkg: http://raa.ruby-lang.org/list.rhtml?name=installpkg
+
+After installing that, just su and run
+  
+  ruby install.rb
