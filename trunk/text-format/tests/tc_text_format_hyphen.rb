@@ -1,7 +1,8 @@
 $: << "../lib"
 
+require 'rubygems'
 require 'text/format'
-require 'tex/hyphen'
+require 'text/hyphen'
 
 Gettysburg = <<-'EOS'
   Four score and seven years ago our fathers brought forth on this
@@ -31,7 +32,7 @@ Gettysburg = <<-'EOS'
       -- Pres. Abraham Lincoln, 19 November 1863
 EOS
 
-ho = TeX::Hyphen.new
+ho = Text::Hyphen.new
 fo = Text::Format.new(:hard_margins => true, :columns => 5,
                       :format_style => Text::Format::RIGHT_FILL,
                       :split_rules => Text::Format::SPLIT_HYPHENATION,

@@ -1,4 +1,28 @@
-$Id$
+== Text::Format 1.0.0
+* Changed installer; added a .gem package.
+* Fixed significant problems with #hard_margin wrapping and fallback issues,
+  eliminating most known possibilities for an infinite loop in wrapping. Some
+  of the formatting changes involved with this result in different and more
+  subtle wrapping and splitting of words; please read the full documentation
+  for details.
+* Clarified the API for #hyphenate_to (delineated the return value required if
+  the hyphenator cannot hyphenate the word to the specified size).
+* Changed a number of public and private API calls to work better. As long as
+  the constants provided by Text::Format have been used (and not direct access
+  to the constant values), there will be no issues presented by most of these
+  changes.
+* Changed the initialization of the Text::Format object. The documentation has
+  also been updated to be correct. Note that this will mean that some uses of
+  Text::Format will not work, as Text::Format.new now yields +self+ if a block
+  is given instead of evaluating the block with Object#instance_eval.
+* Added text numbering generators (Text::Format::Alpha, Text::Format::Number,
+  and Text::Format::Roman) to work with #tag_paragraphs and #tag_text to
+  generate numbered paragraphs.
+* #nobreak_regex must be a hash of regular expressions, not strings that are
+  converted to regular expressions. This Perlism has finally been removed.
+* The performance has been improved; the number of times that lines are joined
+  together and then split apart has been reduced.
+* Changed the dependency to Text::Hyphen from TeX::Hyphen.
 
 == Text::Format 0.64
 * Fixed a bug where a NoMethod exception would be raised if #paragraphs was
@@ -10,10 +34,10 @@ $Id$
 
 == Text::Format 0.62
 * Modified the API for hyphenators. Previously, a hyphenator could only be
-  defined as an object containing a method #to_hyphenate with the signature:
-      #to_hyphenate(word, size)
-  Now, the #to_hyphenate method may be the above signature or:
-      #to_hyphenate(word, size, formatter)
+  defined as an object containing a method #hyphenate_to with the signature:
+      #hyphenate_to(word, size)
+  Now, the #hyphenate_to method may be the above signature or:
+      #hyphenate_to(word, size, formatter)
   So that the hyphenator may access information about the formatting object,
   if necessary. Thanks to Tim Bates for suggesting a case where this would be
   useful.
@@ -59,3 +83,5 @@ $Id$
 
 == Text::Format 0.52
 * Initial release
+
+$Id$
