@@ -31,5 +31,5 @@ Gem::Specification.new do |s|
   end
   s.description = description[2..-1].join(" ") 
 
-  s.add_dependency('text-hyphen', '>~ 1.0.0')
+  s.add_dependency('text-hyphen', '~> 1.0.0')
 end
