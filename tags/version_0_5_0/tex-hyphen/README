@@ -1,0 +1,14 @@
+TeX::Hyphen 0.5.0
+Copyright © 2003 - 2004 Martin DeMello and Austin Ziegler
+
+Hyphenates a word according to a TeX pattern file (defaults to Donald E.
+Knuth's hyphen.tex, included in this distribution). This is a straightforward
+port of the perl implementation by Jan Pazdziora
+[http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm].
+Because hyphenation can potentially be an expensive proposition, TeX::Hyphen
+will now return from a cache.
+
+TeX::Hyphen is licensed under the same terms as Ruby or under the GPL version
+2, or later.
+
+This is the last version of TeX::Hyphen. (No, really.)

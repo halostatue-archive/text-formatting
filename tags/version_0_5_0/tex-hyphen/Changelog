@@ -1,0 +1,26 @@
+== TeX::Hyphen 0.5.0
+* No, really, *this* is the final release.
+* TeX::Hyphen will now properly handle non-lowercase hyphenation.
+* The debugging output has been enabled on TeX::Hyphen::DEBUG, not the global
+  $DEBUG variable.
+* Renamed bin/hyphen to bin/texhyphen.
+
+== TeX::Hyphen 0.4.0
+* This is the final release of TeX::Hyphen for Ruby. The next version will be
+  called Text::Hyphen and will provide significant enhancement to the
+  capabilities of hyphenation as well as an API change.
+* Added bin/hyphen -- a program to demonstrate hyphenation.
+
+== TeX::Hyphen 0.3.1
+* Created a gemspec. Removed some unnecessary scaffolding code.
+
+== TeX::Hyphen 0.3
+* Added caching capabilities to both #hyphenate and #visualise.
+
+== TeX::Hyphen 0.2
+* Added TeX::Hyphen#hyphenate_to(word, size). This is in preparation for a
+  change to Text::Format for hyphenation of words. Created Test::Unit unit
+  tests.
+
+== TeX::Hyphen 0.1
+* Initial Ruby version by Martin DeMello.
