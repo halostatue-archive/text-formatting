@@ -1,9 +1,7 @@
-$: << "../lib"
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib") if __FILE__ == $0
 
-# These unit tests are replicated from the unit tests built into the
-# Text::Format Ruby file.
-require 'test/unit'
 require 'text/format'
+require 'test/unit'
 
 class TestText__Format < Test::Unit::TestCase #:nodoc:
   attr_accessor :format_o
@@ -403,9 +401,18 @@ class TestText__Format < Test::Unit::TestCase #:nodoc:
   end
 
   def test_space_only
+    assert_equal("", Text::Format.new.format(" "))
     assert_equal("", Text::Format.new.format("\n"))
     assert_equal("", Text::Format.new.format("        "))
     assert_equal("", Text::Format.new.format("    \n"))
+    assert_equal("", Text::Format.new.paragraphs("\n"))
+    assert_equal("", Text::Format.new.paragraphs(" "))
+    assert_equal("", Text::Format.new.paragraphs("        "))
+    assert_equal("", Text::Format.new.paragraphs("    \n"))
+    assert_equal("", Text::Format.new.paragraphs(["\n"]))
+    assert_equal("", Text::Format.new.paragraphs([" "]))
+    assert_equal("", Text::Format.new.paragraphs(["        "]))
+    assert_equal("", Text::Format.new.paragraphs(["    \n"]))
   end
 
   def test_splendiferous
