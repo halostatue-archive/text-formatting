@@ -1,5 +1,6 @@
-Requires InstallPkg: http://raa.ruby-lang.org/list.rhtml?name=installpkg
+Installing this package is as simple as:
 
-After installing that, just su and run
-  
-  ruby install.rb
+% ruby install.rb
+
+Alternatively, you can use the RubyGem version of TeX::Hyphen available as
+tex-hyphen-0.3.1.gem from the usual sources.

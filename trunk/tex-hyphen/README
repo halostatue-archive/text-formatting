@@ -7,5 +7,3 @@ port of the perl implementation by Jan Pazdziora
 [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm].
 Because hyphenation can potentially be an expensive proposition, TeX::Hyphen
 will now return from a cache.
-
-See doc/ for more details.

@@ -1,3 +1,6 @@
+== TeX::Hyphen 0.3.1
+* Created a gemspec. Removed some unnecessary scaffolding code.
+
 == TeX::Hyphen 0.3
 * Added caching capabilities to both #hyphenate and #visualise.
 
