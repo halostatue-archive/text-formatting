@@ -1,7 +1,7 @@
 == Text::Format 1.0.0
 * Changed installer; added a .gem package.
 * Fixed significant problems with #hard_margin wrapping and fallback issues,
-  eliminating most known possibilities for an infinite loop in wrapping. Some
+  eliminating all known possibilities for an infinite loop in wrapping. Some
   of the formatting changes involved with this result in different and more
   subtle wrapping and splitting of words; please read the full documentation
   for details.
@@ -70,7 +70,7 @@
   documentation for important information on how this feature works.
 
 == Text::Format 0.52.2
-* Fixed the ordering of <=> in cases of Boolean values.
+* Fixed the ordering of #<=> in cases of Boolean values.
 * Fixed #expand and #unexpand Array handling.
 * Added a Changelog.
 

@@ -1,4 +1,6 @@
-Make sure that you have Phil Thomson's install-package on your system.
+Installing this package is as simple as:
 
-Simply run:
 % ruby install.rb
+
+Alternatively, you can use the RubyGem version of Text::Format available as
+text-format-1.0.0.gem from the usual sources.

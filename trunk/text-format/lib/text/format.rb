@@ -552,7 +552,7 @@ class Text::Format
     text = text[0] if text.kind_of?(Array)
 
       # Convert the provided paragraph to a list of words.
-    words = text.split(SPACES_RE).reject { |ww| ww.nil? or ww.empty? }
+    words = text.split(SPACES_RE).reverse.reject { |ww| ww.nil? or ww.empty? }
 
     text = []
 
@@ -567,15 +567,16 @@ class Text::Format
     first_line = true
 
     if words.empty?
-      line      = []
-      line_size = 0
+      line        = []
+      line_size   = 0
+      extra_space = false
     else
-      line      = [ words.shift ]
-      line_size = line[-1].size
+      line        = [ words.pop ]
+      line_size   = line[-1].size
+      extra_space = __add_extra_space?(line[-1])
     end
-    extra_space = __add_extra_space?(line[-1])
 
-    while next_word = words.shift
+    while next_word = words.pop
       next_word.strip! unless next_word.nil?
       new_line_size = (next_word.size + line_size) + 1
 
@@ -608,8 +609,12 @@ class Text::Format
           # returned more than one word, readjust the word list.
         line, next_word = __wrap_line(line, next_word) if @nobreak
         if next_word.kind_of?(Array)
-          words.unshift(*next_word)
-          next_word = words.shift
+          if next_word.size > 1
+            words.push(*(next_word.reverse))
+            next_word = words.pop
+          else
+            next_word = next_word[0]
+          end
           next_word.strip! unless next_word.nil?
         end
 
@@ -621,8 +626,12 @@ class Text::Format
           # word, readjust the word list.
         line, new_line_size, next_word = __hyphenate(line, line_size, next_word, max_line_width)
         if next_word.kind_of?(Array)
-          words.unshift(*next_word)
-          next_word = words.shift
+          if next_word.size > 1
+            words.push(*(next_word.reverse))
+            next_word = words.pop
+          else
+            next_word = next_word[0]
+          end
           next_word.strip! unless next_word.nil?
         end
 
@@ -656,21 +665,20 @@ class Text::Format
     end
 
     if (@tag_paragraph and (not text.empty?))
-      clr = %r{`(\w+)'}o.match([caller(1)].flatten[0])[1]
-      clr = "" if clr.nil?
-
-      if ((not @tag_text[0].nil?) and (@tag_cur.size < 1) and (clr != "paragraphs"))
+      if @tag_cur.nil? or @tag_cur.empty?
         @tag_cur = @tag_text[0]
       end
 
       fchar = /(\S)/o.match(text[0])[1]
       white = text[0].index(fchar)
 
-      if ((white - @left_margin - 1) > @tag_cur.size) then
-        white = @tag_cur.size + @left_margin
-        text[0].gsub!(/^ {#{white}}/, "#{' ' * @left_margin}#{@tag_cur}")
-      else
-        text.unshift("#{' ' * @left_margin}#{@tag_cur}\n")
+      unless @tag_cur.nil?
+        if ((white - @left_margin - 1) > @tag_cur.size) then
+          white = @tag_cur.size + @left_margin
+          text[0].gsub!(/^ {#{white}}/, "#{' ' * @left_margin}#{@tag_cur}")
+        else
+          text.unshift("#{' ' * @left_margin}#{@tag_cur}\n")
+        end
       end
     end
 
