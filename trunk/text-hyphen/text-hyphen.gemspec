@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.rdoc_options      = %w(--title Text::Hyphen --main README --line-numbers)
   s.extra_rdoc_files  = %w(README LICENCE INSTALL ChangeLog)
 
-  s.test_suite_file = %w{tests/tc_text_hyphen.rb}
+  s.test_files        = %w{tests/tc_text_hyphen.rb}
 
   s.autorequire = %q{text/hyphen}
   s.require_paths = %w{lib}
