@@ -25,7 +25,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::ET = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 .aa4 .aasta5 .ahe4li .al4a .al4gas .antiik5 .ap3l .ap3r .art5r .au3a .eba3
 .ee4 .eela4 .ek3l .ek5r .gu4a .hie5 .idi4 .inim5a .ise5e .is4o .ja4e .ja4t

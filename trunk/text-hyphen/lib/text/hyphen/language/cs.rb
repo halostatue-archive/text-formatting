@@ -10,7 +10,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::CS = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 a1ğa a1ça a1Ÿa a1ÿa a1ca a1ja a1Ôa a1œa a1åa a1ha a1cha a1ka a1ra a1da a1ta
 a1na a1ğe a1çe a1Ÿe a1ÿe a1ce a1je a1he a1che a1ke a1re a1de a1te a1ne a1ri

@@ -21,7 +21,7 @@ end
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::HU = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 .a2 .adás1s .ae1 .agyon1 .al1eg .al1e2m .al1e2s .al1ér .al1is .al1os .arc1c
 .ar2c3ho .atmo1 .az1a2 .az1ám .aze2 .á2 .ál1a2 .ál1e .ál1é2 .ál1i .ál1ok

@@ -15,7 +15,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::HSB = Text::Hyphen::Language.new do |lang|
-    encoding "UTF-8"
+    lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 % ě
 8ě

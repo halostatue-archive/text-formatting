@@ -17,7 +17,7 @@ class Text::Hyphen::Language
   ZERO_START_RE         = %r{^(?=\D)}
 
   def encoding(enc)
-  @encoding = enc
+    @encoding = enc
   end
 
   def both

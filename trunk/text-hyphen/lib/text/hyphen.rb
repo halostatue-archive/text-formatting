@@ -25,8 +25,8 @@ module Text; end
   # a word. If no language is specified, then the language en_us (EN_US)
   # is used by default.
   #
-  # Copyright::   Copyright (c) 2004 Austin Ziegler
-  # Version::     1.0.0
+  # Copyright::   Copyright (c) 2004 - 2005 Austin Ziegler
+  # Version::     1.0.1
   # Based On::    <tt>TeX::Hyphen</tt> 0.4 Copyright (c) 2003 - 2004
   #               Martin DeMello and Austin Ziegler, in turn based on
   #               Perl's <tt>TeX::Hyphen</tt>
@@ -83,7 +83,7 @@ module Text; end
   # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 class Text::Hyphen
   DEBUG   = false
-  VERSION = '1.0.0'
+  VERSION = '1.0.1'
 
   DEFAULT_MIN_LEFT  = 2
   DEFAULT_MIN_RIGHT = 2

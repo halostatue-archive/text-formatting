@@ -56,7 +56,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::MN = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 .aa2 .in2 .oë2 .oo2 .öö2 .uu2 .üü2 .ää2 aa2j a1d a2di
 aï2b a1p asaa3 a1t a1f a1x a1c a3c2d a1q a1š a1ţ a2űal 1ba

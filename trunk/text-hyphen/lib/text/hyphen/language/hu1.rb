@@ -36,7 +36,7 @@ end
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::HU = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 % 1C(s/z/y)V   (V <> y)
 %  1C(f/h/s/z)y  occurs at the end of names, so I added some of them

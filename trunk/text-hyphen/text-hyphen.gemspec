@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'text-hyphen'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.summary = %q(Multilingual word hyphenation according to modified TeX hyphenation pattern files.)
   s.platform = Gem::Platform::RUBY
 
@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.autorequire = %q{text/hyphen}
   s.require_paths = %w{lib}
   s.bindir = %q(bin)
+  s.exectuables = %w(hyphen)
 
   s.files = Dir.glob("**/*").delete_if do |item|
     item.include?("CVS") or item.include?(".svn") or

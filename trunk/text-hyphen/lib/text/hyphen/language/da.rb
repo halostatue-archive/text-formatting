@@ -27,7 +27,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::DA = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
     # First, we input the patterns containing only `normal' letters (a-z).
   lang.patterns <<-PATTERNS
 .ae3 .an3k .an1s .be5la .be1t .bi4tr .der3i .diagno5 .her3 .hoved3 .ne4t5

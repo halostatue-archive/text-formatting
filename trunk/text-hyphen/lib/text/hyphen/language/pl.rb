@@ -65,7 +65,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::PL = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 .ćć8 .ćł8 .ćń8 .ćś8 .ćź8 .ćż8 .ć8 .ćb8 .ćc8 .ćd8 .ćf8 .ćg8 .ćh8 .ćj8 .ćk8
 .ćl8 .ćm8 .ćn8 .ćp8 .ćr8 .ćs8 .ćt8 .ćv8 .ćw8 .ćwier2ć3 .ćx8 .ćz8 .łć8 .łł8

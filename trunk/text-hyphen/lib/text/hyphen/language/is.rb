@@ -55,7 +55,7 @@
 require 'text/hyphen/language'
 
 Text::Hyphen::Language::IS = Text::Hyphen::Language.new do |lang|
-  encoding "UTF-8"
+  lang.encoding "UTF-8"
   lang.patterns <<-PATTERNS
 .að3 .aða4 .aðk2 .aðl4a .af3n .af3re .afr3í .af1s4 .agn5ú .al3e .al4l .am4s
 .an3k .ann4e .ar2 .ar3a4b5 .arth5 .asp3 .aum5a .ám4 .án4a .ba4 .da4 .dam5a
