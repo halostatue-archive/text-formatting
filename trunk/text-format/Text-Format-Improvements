@@ -1,0 +1,12 @@
+Text::Format
+
+* Numbered paragraphs.
+* Numbered lines (including by step).
+* Margin lines. e.g.:
+     | This is line one.
+     | This is line two.
+* Block indent/unindent.
+* Word-breaking:
+  * Hard breaking (just continue on next line)
+  * Soft breaking (use a marker and continue on next line)
+  * Hyphenation (using a hyphenation module)
