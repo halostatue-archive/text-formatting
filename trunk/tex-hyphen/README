@@ -1,4 +1,4 @@
-TeX::Hyphen 0.3.2
+TeX::Hyphen 0.4.0
 Copyright © 2003 - 2004 Martin DeMello and Austin Ziegler
 
 Hyphenates a word according to a TeX pattern file (defaults to Donald E.
@@ -8,4 +8,7 @@ port of the perl implementation by Jan Pazdziora
 Because hyphenation can potentially be an expensive proposition, TeX::Hyphen
 will now return from a cache.
 
-TeX::Hyphen is licensed under the same terms as Ruby.
+TeX::Hyphen is licensed under the same terms as Ruby or under the GPL version
+2, or later.
+
+This is the last version of TeX::Hyphen.

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{tex-hyphen}
-  s.version = %q{0.3.2}
+  s.version = %q{0.4.0}
   s.summary = %q{Hyphenates a word according to a TeX pattern file.}
   s.platform = Gem::Platform::RUBY
 

@@ -25,14 +25,14 @@ module TeX #:nodoc:
     # is used instead.
     #
     # Copyright::   Copyright (c) 2003 - 2004 Martin DeMello and Austin Ziegler
-    # Version::     0.3.2
+    # Version::     0.4.0
     # Based On::    Perl's <tt>TeX::Hyphen</tt>
     #               [http://search.cpan.org/author/JANPAZ/TeX-Hyphen-0.140/lib/TeX/Hyphen.pm]
     #               Copyright (c) 1997 - 2002 Jan Pazdziora
     # Licence::     Ruby's
     #
   class Hyphen
-    VERSION = '0.3.2'
+    VERSION = '0.4.0'
 
     DEFAULT_MIN_LEFT  = 2
     DEFAULT_MIN_RIGHT = 2
