@@ -691,9 +691,18 @@ class Text::Format
     # separated by a single empty line in the result; otherwise, the
     # paragraphs will follow immediately after each other. Uses #format to
     # do the heavy lifting.
-  def paragraphs(to_wrap = nil)
+    #
+    # If +to_wrap+ responds to #split, then it will be split into an array
+    # of elements by calling #split with the value of +split_on+. The
+    # default value of split_on is $/, or the default record separator,
+    # repeated twice (e.g., /\n\n/).
+  def paragraphs(to_wrap = nil, split_on = /(#{$/}){2}/o)
     to_wrap = @text if to_wrap.nil?
-    to_wrap = [to_wrap].flatten
+    if to_wrap.respond_to?(:split)
+      to_wrap = to_wrap.split(split_on)
+    else
+      to_wrap = [to_wrap].flatten
+    end
 
     if ((@first_indent == @body_indent) or @tag_paragraph) then
       p_end = NEWLINE

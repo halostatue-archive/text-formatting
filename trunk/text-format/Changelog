@@ -23,6 +23,7 @@
 * The performance has been improved; the number of times that lines are joined
   together and then split apart has been reduced.
 * Changed the dependency to Text::Hyphen from TeX::Hyphen.
+* Added auto-split capabilities to #paragraphs. See the updated documentation.
 
 == Text::Format 0.64
 * Fixed a bug where a NoMethod exception would be raised if #paragraphs was
