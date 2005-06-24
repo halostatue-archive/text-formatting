@@ -100,17 +100,14 @@ file TARDIST => [ :test ] do |t|
 end
 task TARDIST => [ :test ]
 
-def sign(file)
-  system %("C:/Apps/GnuPG/gpg.exe" -ba #{file}).gsub(%r{/}) { "\\" }
-  raise "Error signing with GPG." unless File.exists?("#{file}.asc")
-end
-
-task :signtar => [ :tar ] do
-  sign TARDIST
-end
-task :signgem => [ :gem ] do
-  sign "../#{DISTDIR}.gem"
+desc "Build the RDoc documentation for Text::Format"
+task :docs do
+  require 'rdoc/rdoc'
+  rdoc_options = %w(--title Text::Format --main README --line-numbers)
+  files = FileList[*%w(README ChangeLog Install bin/**/*.rb lib/**/*.rb)]
+  rdoc_options += files.to_a
+  RDoc::RDoc.new.document(rdoc_options)
 end
 
 desc "Build everything."
-task :default => [ :signtar, :signgem ]
+task :default => [ :tar, :gem ]

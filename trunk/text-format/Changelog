@@ -1,5 +1,6 @@
 == Text::Format 1.0.0
-* Changed installer; added a .gem package.
+* Changed installer: added a .gem package.
+* Changed installer: moving to a variant of setup.rb by Minero Aoki.
 * Fixed significant problems with #hard_margin wrapping and fallback issues,
   eliminating all known possibilities for an infinite loop in wrapping. Some
   of the formatting changes involved with this result in different and more
